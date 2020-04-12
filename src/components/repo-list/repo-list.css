@@ -1,0 +1,47 @@
+.repoList__table {
+    width: 100%;
+
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.repoList__headerRow {
+    height: 70px;
+
+    background: #f7f7f7;
+}
+
+.repoList__row {
+    height: 70px;
+
+    border-top: 1px solid #f2f2f2;
+}
+
+.repoList__row:first-child {
+    border-top: none;
+}
+
+.repoList__row:hover {
+    background-color: #f7f7f7;
+}
+
+.repoList__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 100%;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+.repoList__cell {
+    height: 70px;
+    padding: 0;
+
+    text-align: center;
+
+    color: #000;
+}
