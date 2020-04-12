@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './repo-list.css';
 
 export const RepoList = ({ repos }) => {
+
     return (
         <table className='repoList__table'>
             <thead>
@@ -18,17 +19,17 @@ export const RepoList = ({ repos }) => {
                     return (
                         <tr key={ i } className='repoList__row'>
                             <td className='repoList__cell'>
-                                <Link to={`/${item.id}`} className='repoList__link' >
+                                <Link to={`/${item.full_name}`} className='repoList__link' >
                                     { i + 1 }
                                 </Link>
                             </td>
                             <td className='repoList__cell'>
-                                <Link to={`/${item.id}`} className='repoList__link' >
+                                <Link to={`/${item.full_name}`} className='repoList__link' >
                                     { item.name }
                                 </Link>
                             </td>
                             <td className='repoList__cell'>
-                                <Link to={`/${item.id}`} className='repoList__link' >
+                                <Link to={`/${item.full_name}`} className='repoList__link' >
                                     { item.owner && item.owner.login }
                                 </Link>
                             </td>

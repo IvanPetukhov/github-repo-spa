@@ -1,4 +1,6 @@
-const getApi = (url) => {
+import { normalize, schema } from 'normalizr'
+
+const getApi = (url, schema) => {
 
     return fetch(url)
         .then((response) => {
@@ -8,10 +10,23 @@ const getApi = (url) => {
                 }
 
                 return {
-                    ...json
+                    ...normalize(json, schema),
                 };
             });
         })
+};
+
+const repoSchema = new schema.Entity('repo',{}, {
+    idAttribute: repo => repo.full_name
+});
+
+const reposSchema = new schema.Entity('repos', {}, {
+    idAttribute: repo => repo.full_name
+});
+
+export const Schemas = {
+    REPO: repoSchema,
+    REPOS: [reposSchema]
 };
 
 export const GET_API = 'Get API';
@@ -19,7 +34,7 @@ export const GET_API = 'Get API';
 export default (store) => (next) => (action) => {
     const getAPI = action[GET_API];
 
-    const { url, types } = getAPI;
+    const { url, types, schema } = getAPI;
 
     const actionWith = (data) => {
         const finalAction = {
@@ -33,7 +48,7 @@ export default (store) => (next) => (action) => {
     const [ requestType, successType, failureType ] = types;
     next(actionWith({ type: requestType }));
 
-    return getApi(url).then(
+    return getApi(url, schema).then(
         (response) => {
             return next(actionWith({
                 response,

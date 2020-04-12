@@ -10,14 +10,14 @@ const mapStateToProps = (state) => {
     } = state;
 
     return {
-        repos: Object.values(repos)
+        repos
     };
 };
 
 const RepoListInner = (props) => {
     React.useEffect(() => {
         props.loadRepos();
-    }, []);
+    }, [props]);
 
     return (
         <RepoListView repos={ props.repos }/>

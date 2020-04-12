@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "history": "^4.10.1",
+    "normalizr": "^3.6.0",
     "react-router-dom": "^5.1.2"
   }
 }
