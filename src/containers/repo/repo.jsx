@@ -26,10 +26,12 @@ export const RepoInner = (props) => {
         if (Object.values(props.repos).length === 0) {
             props.loadRepos();
         }
-    }, [props.repos]);
+    }, [props]);
+
+    const repoDataId = Object.values(props.repos).indexOf((x) => (x.id === id));
 
      return (
-        <RepoView repoData={ props.repos[id] } />
+        <RepoView repoData={ props.repos[repoDataId + 1] } />
     );
 };
 
