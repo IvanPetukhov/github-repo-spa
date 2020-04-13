@@ -6,6 +6,7 @@ import { Redirect } from 'react-router';
 import { RepoList } from './containers/repo-list'
 import { Repo } from './containers/repo';
 import { Root } from './containers/root';
+import { User } from './containers/user';
 import { createBrowserHistory } from 'history';
 import configureStore from './store';
 import { Provider } from 'react-redux';
@@ -28,6 +29,10 @@ ReactDOM.render(
                     <Route
                         path='/:owner/:repoName'
                         component={ Repo }
+                    />
+                    <Route
+                        path='/:login'
+                        component={ User }
                     />
                     <Redirect to="/" />
                 </Switch>

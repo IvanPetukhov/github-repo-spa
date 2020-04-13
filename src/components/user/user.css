@@ -1,0 +1,109 @@
+.user {
+    margin: 16px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 900px;
+}
+
+.user__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.user__avatar {
+    width: 100%;
+}
+
+.user__avatarContainer {
+    width: 20%;
+}
+
+.user__userInfo {
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user__infoHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.user__name {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.user__location {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.user__stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.user__stats_elem + .user__stats_elem {
+    margin-top: 16px;
+}
+
+.user__starredRepos {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user__repoCard {
+    height: 50px;
+    width: 170px;
+    flex: 0 32%;
+    margin-bottom: 2%;
+}
+
+.user__repoLink {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #f7f7f7;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.user__loadStarredButton {
+    width: 100%;
+    background-color: #f7f7f7;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.user__loadStarredButton:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}

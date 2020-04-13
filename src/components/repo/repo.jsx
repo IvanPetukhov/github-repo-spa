@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './repo.css';
 
 export const Repo = ({ repoData, ids }) => {
@@ -28,8 +29,17 @@ export const Repo = ({ repoData, ids }) => {
                         <img src={ repoData.owner && repoData.owner.avatar_url } alt='user pic' width={75}/>
                     </div>
                     <div className='repo__userInfo_links' >
-                        <div>{ repoData.owner && repoData.owner.login }</div>
-                        (<a href={ repoData.owner && repoData.owner.html_url } target='_blank'>GitHub пользователя</a>)
+                        <Link to={ `/${repoData.owner.login}` } className='repo__userInfo_infoPage'>
+                            { repoData.owner && repoData.owner.login }
+                        </Link>
+                        <div className='repo__userInfo_hint'>Для просмотра информации о юзере кликните на его логин</div>
+                        <div className='repo__userInfo_ghLink'>
+                            (
+                                <a href={ repoData.owner && repoData.owner.html_url } target='_blank'>
+                                    GitHub пользователя
+                                </a>
+                            )
+                        </div>
                     </div>
                 </div>
             </div>

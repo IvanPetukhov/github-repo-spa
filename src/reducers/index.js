@@ -6,6 +6,9 @@ import {
     REPOS_FAILURE,
     REPOS_REQUEST,
     REPOS_SUCCESS,
+    USER_REQUEST,
+    USER_SUCCESS,
+    USER_FAILURE, STARRED_FAILURE, STARRED_REQUEST, STARRED_SUCCESS
 } from "../actions";
 import paginate from "./paginate";
 
@@ -47,6 +50,49 @@ const repoReducer = (state = {}, action) => {
     return state;
 };
 
+const userReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_REQUEST:
+        case USER_SUCCESS:
+        case USER_FAILURE:
+            if (action.response) {
+                return  {
+                    ...state,
+                    ...action.response.entities.user
+                };
+            }
+            break;
+        default:
+            break;
+    }
+
+    return state;
+};
+
+const starredReposReducer = (state = {}, action) => {
+    console.log(action);
+    switch (action.type) {
+        case STARRED_FAILURE:
+        case STARRED_REQUEST:
+        case STARRED_SUCCESS:
+            if (action.response) {
+                console.log({
+                    ...state,
+                    ...action.response.entities.repos
+                });
+                return  {
+                    ...state,
+                    ...action.response.entities.repos
+                };
+            }
+            break;
+        default:
+            break;
+    }
+
+    return state;
+};
+
 const paginationReducer = paginate({
     types: [
         REPOS_REQUEST,
@@ -58,6 +104,8 @@ const paginationReducer = paginate({
 const rootReducer = combineReducers({
     repos: reposReducer,
     repo: repoReducer,
+    user: userReducer,
+    starredRepos: starredReposReducer,
     pagination: paginationReducer
 });
 

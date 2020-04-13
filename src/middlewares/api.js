@@ -43,10 +43,15 @@ const userSchema = new schema.Entity('user',{}, {
     idAttribute: user => user.login
 });
 
+const starredSchema = new schema.Entity('starredRepos', {}, {
+    idAttribute: repo => repo.full_name
+});
+
 export const Schemas = {
     REPO: repoSchema,
     REPOS: [reposSchema],
-    USER: userSchema
+    USER: userSchema,
+    STARRED: starredSchema
 };
 
 export const GET_API = 'Get API';

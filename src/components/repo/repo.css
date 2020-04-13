@@ -72,3 +72,18 @@
     width: 100%;
     margin-left: 16px;
 }
+
+.repo__userInfo_infoPage {
+    text-decoration: none;
+    color: black;
+    text-decoration-line: underline;
+}
+
+.repo__userInfo_hint {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 10px;
+}
+
+.repo__userInfo_ghLink {
+    margin-top: 12px;
+}

@@ -46,3 +46,47 @@ export const loadSingleRepo = (fullName) => (dispatch, getState) => {
 
     return dispatch(fetchSingleRepo(fullName));
 };
+
+export const USER_REQUEST = 'USER_REQUEST';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILURE = 'USER_FAILURE';
+
+const fetchUser = (login) => ({
+    [GET_API]: {
+        types: [ USER_REQUEST, USER_SUCCESS, USER_FAILURE ],
+        url: `https://api.github.com/users/${ login }`,
+        schema: Schemas.USER
+    }
+});
+
+export const loadUser = (login) => (dispatch, getState) => {
+    const user = getState().user[login];
+
+    if (user && Object.values(user).length > 0) {
+        return null;
+    }
+
+    return dispatch(fetchUser(login));
+};
+
+export const STARRED_REQUEST = 'STARRED_REQUEST';
+export const STARRED_SUCCESS = 'STARRED_SUCCESS';
+export const STARRED_FAILURE = 'STARRED_FAILURE';
+
+const fetchStarredRepos = (login) => ({
+    [GET_API]: {
+        types: [ STARRED_REQUEST, STARRED_SUCCESS, STARRED_FAILURE ],
+        url: `https://api.github.com/users/${login}/starred`,
+        schema: Schemas.REPOS
+    }
+});
+
+export const loadStarredRepos = (login) => (dispatch, getState) => {
+    const starredRepos = getState().starredRepos[login];
+
+    if (starredRepos && Object.values(starredRepos).length > 0) {
+        return null;
+    }
+
+    return dispatch(fetchStarredRepos(login));
+};
