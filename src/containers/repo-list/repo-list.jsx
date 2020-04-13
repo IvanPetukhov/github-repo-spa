@@ -19,8 +19,12 @@ const RepoListInner = (props) => {
         props.loadRepos();
     }, [props]);
 
+    const onLoadMore = () => {
+        props.loadRepos(true);
+    };
+
     return (
-        <RepoListView repos={ props.repos }/>
+        <RepoListView repos={ props.repos } onLoadMore={ onLoadMore } />
     );
 };
 

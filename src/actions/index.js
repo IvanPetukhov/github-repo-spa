@@ -4,22 +4,25 @@ export const REPOS_REQUEST = 'REPOS_REQUEST';
 export const REPOS_SUCCESS = 'REPOS_SUCCESS';
 export const REPOS_FAILURE = 'REPOS_FAILURE';
 
-const fetchRepos = () => ({
+const fetchRepos = (nextPageUrl) => ({
     [GET_API]: {
         types: [ REPOS_REQUEST, REPOS_SUCCESS, REPOS_FAILURE ],
-        url: 'https://api.github.com/repositories',
+        url: nextPageUrl,
         schema: Schemas.REPOS
     }
 });
 
-export const loadRepos = () => (dispatch, getState) => {
-    const repos = getState().repos;
+export const loadRepos = (nextPage) => (dispatch, getState) => {
+    const {
+        nextPageUrl = 'https://api.github.com/repositories',
+        pageCount = 0
+    } = getState().pagination || {};
 
-    if (repos && Object.values(repos).length > 0) {
-        return null;
+    if (pageCount > 0 && !nextPage) {
+        return null
     }
 
-    return dispatch(fetchRepos());
+    return dispatch(fetchRepos(nextPageUrl));
 };
 
 export const REPO_REQUEST = 'REPO_REQUEST';

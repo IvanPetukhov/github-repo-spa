@@ -2,19 +2,20 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './repo-list.css';
 
-export const RepoList = ({ repos }) => {
+export const RepoList = ({ repos, onLoadMore }) => {
 
     return (
-        <table className='repoList__table'>
-            <thead>
+        <div className='repoList'>
+            <table className='repoList__table'>
+                <thead>
                 <tr className='repoList__headerRow'>
                     <th className='repoList__cell'>№</th>
                     <th className='repoList__cell'>Название</th>
                     <th className='repoList__cell'>Владелец</th>
                     <th className='repoList__cell'>Ссылка на github</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 { Object.values(repos).map((item, i) => {
                     return (
                         <tr key={ i } className='repoList__row'>
@@ -41,7 +42,9 @@ export const RepoList = ({ repos }) => {
                         </tr>
                     );
                 }) }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <button className='repoList__loadMoreButton' onClick={ onLoadMore }> Загрузить еще </button>
+        </div>
     );
 }

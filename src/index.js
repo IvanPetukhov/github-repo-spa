@@ -26,7 +26,6 @@ ReactDOM.render(
                         component={ RepoList }
                     />
                     <Route
-                        // path='/:id'
                         path='/:owner/:repoName'
                         component={ Repo }
                     />

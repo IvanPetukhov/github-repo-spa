@@ -1,5 +1,19 @@
 import { normalize, schema } from 'normalizr'
 
+const getNextPageUrl = (response) => {
+    const link = response.headers.get('link');
+    if (!link) {
+        return null;
+    }
+
+    const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1);
+    if (!nextLink) {
+        return null;
+    }
+
+    return nextLink.trim().split(';')[0].slice(1, -1);
+};
+
 const getApi = (url, schema) => {
 
     return fetch(url)
@@ -11,6 +25,7 @@ const getApi = (url, schema) => {
 
                 return {
                     ...normalize(json, schema),
+                    nextPageUrl: getNextPageUrl(response),
                 };
             });
         })
@@ -24,9 +39,14 @@ const reposSchema = new schema.Entity('repos', {}, {
     idAttribute: repo => repo.full_name
 });
 
+const userSchema = new schema.Entity('user',{}, {
+    idAttribute: user => user.login
+});
+
 export const Schemas = {
     REPO: repoSchema,
-    REPOS: [reposSchema]
+    REPOS: [reposSchema],
+    USER: userSchema
 };
 
 export const GET_API = 'Get API';

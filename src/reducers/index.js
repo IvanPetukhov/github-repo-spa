@@ -1,5 +1,13 @@
 import { combineReducers } from 'redux'
-import {REPO_FAILURE, REPO_REQUEST, REPO_SUCCESS, REPOS_FAILURE, REPOS_REQUEST, REPOS_SUCCESS} from "../actions";
+import {
+    REPO_FAILURE,
+    REPO_REQUEST,
+    REPO_SUCCESS,
+    REPOS_FAILURE,
+    REPOS_REQUEST,
+    REPOS_SUCCESS,
+} from "../actions";
+import paginate from "./paginate";
 
 const reposReducer = (state = {}, action) => {
     switch (action.type) {
@@ -39,9 +47,18 @@ const repoReducer = (state = {}, action) => {
     return state;
 };
 
+const paginationReducer = paginate({
+    types: [
+        REPOS_REQUEST,
+        REPOS_SUCCESS,
+        REPOS_FAILURE
+    ]
+});
+
 const rootReducer = combineReducers({
     repos: reposReducer,
-    repo: repoReducer
+    repo: repoReducer,
+    pagination: paginationReducer
 });
 
 export default rootReducer;
