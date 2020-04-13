@@ -4,7 +4,7 @@ import './repo.css';
 
 export const Repo = ({ repoData, ids }) => {
     const goBack = () => {
-        window.history.back();
+        window.location.p();
     };
 
     return repoData ? (
@@ -15,7 +15,7 @@ export const Repo = ({ repoData, ids }) => {
                 </div>
                 <div className='repo__links'>
                     <a href={ repoData.html_url } target='_blank'>GitHub</a>
-                    <div onClick={ goBack } className='repo__linkBack'>Вернуться к списку</div>
+                    <div onClick={ goBack } className='repo__linkBack'>Назад</div>
                 </div>
             </div>
             <div className='repo__container'>
