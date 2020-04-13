@@ -10,7 +10,6 @@ const paginate = ({ types }) => {
             pageCount: 0,
             ids: []
         } : state;
-        console.log('updatePagination', currState, action);
         switch (action.type) {
             case requestType:
                 return {
@@ -18,13 +17,6 @@ const paginate = ({ types }) => {
                     isFetching: true
                 };
             case successType:
-                console.log('success', currState, {
-                    ...currState,
-                    isFetching: false,
-                    ids: union(currState.ids, action.response.result),
-                    nextPageUrl: action.response.nextPageUrl,
-                    pageCount: currState.pageCount + 1
-                });
                 return {
                     ...currState,
                     isFetching: false,
